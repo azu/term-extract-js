@@ -1,13 +1,15 @@
 "use strict";
 import { getTokenizer } from "kuromojin"
 
-const tokenizer = null;
+let _tokenizer = null;
 
 export function ready() {
-    if (tokenizer) {
-        return tokenizer;
+    if (_tokenizer) {
+        return _tokenizer;
     }
-    return getTokenizer();
+    return getTokenizer().then((tokenizer) => {
+        _tokenizer = tokenizer
+    });
 }
 
 /*
@@ -58,11 +60,11 @@ export function convertKuromojiToMecabAsyncResult(result) {
 }
 
 export function parse(text) {
-    if (!tokenizer) {
+    if (!_tokenizer) {
         throw new Error("Please call ready().");
     }
 
-    return tokenizer.tokenize(text).map((result) => {
+    return _tokenizer.tokenize(text).map((result) => {
         return convertKuromojiToMecabAsyncResult(result);
     });
 }
