@@ -1,6 +1,6 @@
 // LICENSE : MIT
 'use strict'
-
+import {ready} from "./analysers/kuromoji"
 import { COMPOUND_NOUN_SEPARATOR_REGEX } from './constants'
 import Config from './config'
 
@@ -10,6 +10,9 @@ class TermExtract {
     this.config = new Config(option)
   }
 
+  ready(){
+    return ready()
+  }
   /**
    * @return Array
    */

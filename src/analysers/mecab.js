@@ -1,5 +1,5 @@
 'use strict'
-
+import {parse} from "./kuromoji";
 import MeCabModule from 'mecab-async'
 import { COMPOUND_NOUN_SEPARATOR } from '../constants'
 import AbstractAnalyser from './abstract-analyser'
@@ -74,9 +74,13 @@ class MeCab extends AbstractAnalyser {
   }
 
   parseMeCabData() {
-    const meCab = new MeCabModule()
-
-    return meCab.parseSync(this.sentence)
+    const isPureJavaScript = true;
+    if(isPureJavaScript) {
+      return parse(this.sentence);
+    }else {
+      const meCab = new MeCabModule()
+      return meCab.parseSync(this.sentence)
+    }
   }
 
   isSingleNoun(noun, partOfSpeech, cl1, cl2) {
