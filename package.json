@@ -1,5 +1,5 @@
 {
-  "name": "term-extract-js",
+  "name": "@azu/term-extract-js",
   "version": "2.0.1-alpha.3",
   "description": "JavaScript implementation of TermExtract",
   "main": "lib/term-extract.js",
