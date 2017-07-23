@@ -5,7 +5,7 @@ let _tokenizer = null;
 
 export function ready() {
     if (_tokenizer) {
-        return _tokenizer;
+        return Promise.resolve(_tokenizer);
     }
     return getTokenizer().then((tokenizer) => {
         _tokenizer = tokenizer
